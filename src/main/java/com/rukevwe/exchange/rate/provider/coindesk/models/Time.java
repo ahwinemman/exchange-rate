@@ -1,4 +1,4 @@
-package com.rukevwe.exchange.rate.coinbase.models;
+package com.rukevwe.exchange.rate.provider.coindesk.models;
 
 import lombok.Data;
 

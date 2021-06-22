@@ -1,11 +1,15 @@
 package com.rukevwe.exchange.rate.service;
 
+import com.rukevwe.exchange.rate.model.RateInfo;
+import com.rukevwe.exchange.rate.model.RateList;
 import com.rukevwe.exchange.rate.model.ServiceResponse;
 
 public interface RateService {
 
-    ServiceResponse getLatestRate(String currency);
+    ServiceResponse<RateInfo> getLatestRate(String currency);
 
-    ServiceResponse getRatesBetweenDates(String start, String end);
+    ServiceResponse<RateList> getRatesBetweenDates(String currency, String start, String end);
+
+    ServiceResponse<RateInfo> getCronLatestRate();
 
 }

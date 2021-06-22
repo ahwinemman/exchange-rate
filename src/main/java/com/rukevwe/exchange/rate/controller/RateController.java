@@ -1,5 +1,7 @@
 package com.rukevwe.exchange.rate.controller;
 
+import com.rukevwe.exchange.rate.model.RateInfo;
+import com.rukevwe.exchange.rate.model.RateList;
 import com.rukevwe.exchange.rate.model.ServiceResponse;
 import com.rukevwe.exchange.rate.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +21,21 @@ public class RateController {
         this.rateService = rateService;
     }
 
-    @GetMapping(path = "/latest")
-    public ServiceResponse getLatestRate(@RequestParam(value = "currency", defaultValue = "USD")
-                                                     String currency) {
-        rateService.getLatestRate(currency);
-        return null;
+    @GetMapping
+    public ServiceResponse<RateInfo> getLatestRate(@RequestParam(value = "currency") String currency) {
+        return rateService.getLatestRate(currency);
     }
 
-    @GetMapping
-    public ServiceResponse getRatesBetweenDates(@RequestParam("start") String start,
-                                                @RequestParam("end") String end) {
-        rateService.getRatesBetweenDates(start, end);
-        return null;
+    @GetMapping(path = "/cron")
+    public ServiceResponse<RateInfo> getLatestCronRate() {
+        return rateService.getCronLatestRate();
+    }
+
+    @GetMapping(path = "/range")
+    public ServiceResponse<RateList> getRatesBetweenDates(@RequestParam(value = "currency") String currency,
+                                                          @RequestParam("start") String start,
+                                                          @RequestParam("end") String end) {
+        return rateService.getRatesBetweenDates(currency, start, end);
     }
 
 

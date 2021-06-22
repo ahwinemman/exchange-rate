@@ -1,6 +1,10 @@
 package com.rukevwe.exchange.rate.model;
 
+import lombok.Data;
+
+@Data
 public class ServiceResponse<T> {
-    public boolean success;
-    public T data;
+    private boolean success;
+    private String error;
+    private T data;
 }

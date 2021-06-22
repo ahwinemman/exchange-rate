@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>com.rukevwe</groupId>
-	<artifactId>exchange-rate</artifactId>
+	<artifactId>exchange-rateInfo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>exchange-rate</name>
+	<name>exchange-rateInfo</name>
 	<description>Simple Exchange Rate Service</description>
 
 	<properties>
