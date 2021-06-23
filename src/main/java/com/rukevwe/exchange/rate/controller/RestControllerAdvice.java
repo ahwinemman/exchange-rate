@@ -23,8 +23,8 @@ public class RestControllerAdvice {
         log.error("Invalid request is registered");
         ServiceResponse<Void> serviceResponse = new ServiceResponse<>();
         serviceResponse.setSuccess(false);
-        serviceResponse.setError("Invalid request");
-        serviceResponse.setMessage(invalidRequestException.getMessage());
+        serviceResponse.setError(invalidRequestException.getMessage());
+        serviceResponse.setMessage("Bad request");
         return serviceResponse;
     }
 
@@ -35,8 +35,8 @@ public class RestControllerAdvice {
         log.error("Server error is registered");
         ServiceResponse<Void> serviceResponse = new ServiceResponse<>();
         serviceResponse.setSuccess(false);
-        serviceResponse.setError("Server error");
-        serviceResponse.setMessage(exception.getMessage());
+        serviceResponse.setError(exception.getMessage());
+        serviceResponse.setMessage("Server error");
         return serviceResponse;
     }
 }

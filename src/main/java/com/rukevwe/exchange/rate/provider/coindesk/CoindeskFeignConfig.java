@@ -45,7 +45,7 @@ public class CoindeskFeignConfig {
             HttpStatus responseStatus = HttpStatus.valueOf(response.status());
             log.error("Error reaching coindesk service. Method: {}, Status Code: {}", methodKey, responseStatus.value());
             if (responseStatus.is4xxClientError()) {
-                return new InvalidRequestException();
+                return new InvalidRequestException(String.valueOf(response.body()));
             } else {
                 return new ProviderException();
             }
