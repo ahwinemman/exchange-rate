@@ -36,3 +36,8 @@ docker run -d -e schedule.updateExchangeRate='<override_schedule>' -p 8080:8080 
 ```
 
 In both options the server will be listening on "http://localhost:8080", and the swagger documentation can be accessed on http://localhost:8080/swagger-ui.html
+
+#### Recommendations
+* Add endpoint to change exchangeUpdateRate schedule without server restart.
+* Add DB/Cache to support features like a fallback exchange rate when provider service is down, rate-limiting etc.
+* Add Authentication to secure endpoints.
