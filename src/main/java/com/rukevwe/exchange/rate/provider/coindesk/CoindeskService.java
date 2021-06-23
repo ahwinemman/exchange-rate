@@ -39,11 +39,11 @@ public class CoindeskService implements RateProviderService {
     }
 
     @Override
-    public RateList getProviderRatesBetweenDates(String currency, String start, String end) {
+    public RateList getProviderRatesBetweenDates(String start, String end) {
         RateResponse<BigDecimal> listResponse = httpClient.getRatesBetweenTwoDates(start, end);
         RateList rateList = new RateList();
         rateList.setRateList((listResponse.getBpi()));
-        rateList.setCurrency(currency);
+        rateList.setCurrency("USD");
         rateList.setLastUpdatedTime(listResponse.getTime().getUpdatedISO());
         return rateList;
     }

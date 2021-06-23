@@ -8,7 +8,7 @@ public interface RateService {
 
     ServiceResponse<RateInfo> getLatestRate(String currency);
 
-    ServiceResponse<RateList> getRatesBetweenDates(String currency, String start, String end);
+    ServiceResponse<RateList> getRatesBetweenDates(String start, String end);
 
     ServiceResponse<RateInfo> getCronLatestRate();
 

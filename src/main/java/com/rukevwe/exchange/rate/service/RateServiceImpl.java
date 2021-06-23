@@ -15,9 +15,9 @@ import java.math.BigDecimal;
 @Slf4j
 public class RateServiceImpl implements RateService {
 
-    private static String LAST_UPDATED_TIME;
-    private static BigDecimal LAST_UPDATED_RATE;
-    private static String LAST_DESCRIPTION;
+    public static String LAST_UPDATED_TIME;
+    public static BigDecimal LAST_UPDATED_RATE;
+    public static String LAST_DESCRIPTION;
     private RateProviderService rateProviderService;
     private AppConfig appConfig;
 
@@ -32,16 +32,17 @@ public class RateServiceImpl implements RateService {
         RateInfo rateInfo = rateProviderService.getProviderLatestRate(currency);
         ServiceResponse<RateInfo> serviceResponse = new ServiceResponse<>();
         serviceResponse.setSuccess(true);
+        serviceResponse.setMessage("Successfully retrieved exchange rate");
         serviceResponse.setData(rateInfo);
         return serviceResponse;
     }
 
     @Override
-    public ServiceResponse<RateList> getRatesBetweenDates(String currency, String start, String end) {
-        currency = currency == null ? appConfig.getDefaultCurrency() : currency;
-        RateList rateList = rateProviderService.getProviderRatesBetweenDates(currency, start, end);
+    public ServiceResponse<RateList> getRatesBetweenDates(String start, String end) {
+        RateList rateList = rateProviderService.getProviderRatesBetweenDates(start, end);
         ServiceResponse<RateList> serviceResponse = new ServiceResponse<>();
         serviceResponse.setSuccess(true);
+        serviceResponse.setMessage("Successfully retrieved exchange rates between dates");
         serviceResponse.setData(rateList);
         return serviceResponse;
     }
@@ -51,6 +52,7 @@ public class RateServiceImpl implements RateService {
         ServiceResponse<RateInfo> serviceResponse = new ServiceResponse<>();
         RateInfo rateInfo = new RateInfo();
         serviceResponse.setSuccess(true);
+        serviceResponse.setMessage("Successfully retrieved cron latest exchange rate");
         rateInfo.setDescription(LAST_DESCRIPTION);
         rateInfo.setRate(LAST_UPDATED_RATE);
         rateInfo.setCurrency(appConfig.getDefaultCurrency());
@@ -60,7 +62,7 @@ public class RateServiceImpl implements RateService {
     }
 
 
-    @Scheduled(cron = "${schedule.updateExchangeRate}")
+    @Scheduled(cron = "${schedule.updateExchangeRate:0 0/2 * * * ?}")
     public void updateExchangeRate() {
         try {
             RateInfo rateInfo = rateProviderService.getProviderLatestRate(appConfig.getDefaultCurrency());

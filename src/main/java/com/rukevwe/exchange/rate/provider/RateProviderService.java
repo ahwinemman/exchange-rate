@@ -7,6 +7,6 @@ public interface RateProviderService {
 
     RateInfo getProviderLatestRate(String currency);
 
-    RateList getProviderRatesBetweenDates(String currency, String start, String end);
+    RateList getProviderRatesBetweenDates(String start, String end);
 
 }
