@@ -16,9 +16,9 @@ Build the project with the following command:
 ```shell script
 mvn clean package
 ```
-Then, to run the project's build jar file, run the following command:
+Then, to run the project's built jar file, run the following command:
 ```shell script
-java -jar target/exchange-rate-0.0.1.jar
+java -jar target/exchange-rate-0.0.1.jar --schedule.updateExchangeRate="<override_schedule>" 
 ```
 
 ### Option 2: Run in docker container 
@@ -32,8 +32,7 @@ docker build -t <image-name> .
 ```
 Then, to run the docker container detached, run the following command:
 ```shell script
-docker run -d -p 8080:8080 <image-name>
+docker run -d -e schedule.updateExchangeRate='<override_schedule>' -p 8080:8080 er-service
 ```
-
 
 In both options the server will be listening on "http://localhost:8080", and the swagger documentation can be accessed on http://localhost:8080/swagger-ui.html

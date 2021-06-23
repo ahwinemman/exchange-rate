@@ -62,7 +62,7 @@ public class RateServiceImpl implements RateService {
     }
 
 
-    @Scheduled(cron = "${schedule.updateExchangeRate:0 0/2 * * * ?}")
+    @Scheduled(cron = "${schedule.updateExchangeRate}")
     public void updateExchangeRate() {
         try {
             RateInfo rateInfo = rateProviderService.getProviderLatestRate(appConfig.getDefaultCurrency());
