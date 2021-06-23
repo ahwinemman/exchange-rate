@@ -4,7 +4,6 @@ import com.rukevwe.exchange.rate.model.RateInfo;
 import com.rukevwe.exchange.rate.model.RateList;
 import com.rukevwe.exchange.rate.provider.RateProviderService;
 import com.rukevwe.exchange.rate.provider.coindesk.models.RateResponse;
-import com.rukevwe.exchange.rate.service.RateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
