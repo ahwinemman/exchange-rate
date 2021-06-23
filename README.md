@@ -32,7 +32,7 @@ docker build -t <image-name> .
 ```
 Then, to run the docker container detached, run the following command:
 ```shell script
-docker run -d -e schedule.updateExchangeRate='<override_schedule>' -p 8080:8080 er-service
+docker run -d -e schedule.updateExchangeRate='<override_schedule>' -p 8080:8080 <image-name>
 ```
 
 In both options the server will be listening on "http://localhost:8080", and the swagger documentation can be accessed on http://localhost:8080/swagger-ui.html
